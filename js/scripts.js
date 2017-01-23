@@ -20,5 +20,25 @@ $(document).ready(function() {
     notes = $("#new-notes").val();
 
     var newPlace = new Place(name, location, landmarks, time, notes);
+
+    $("#places ul").append("<li><span class='place'>" + newPlace.name + "</span></li>");
+    $("#places ul").last().click(function() {
+      $("#show-name").text(newPlace.name);
+      $("#show-location").text(newPlace.location);
+      $("ul#show-landmarks").empty();
+      newPlace.landmarks.forEach(function(element) {
+        $("ul#show-landmarks").append("<li>" + element + "</li>");
+      });
+      $("#show-time").text(newPlace.time);
+      $("#show-notes").text(newPlace.notes);
+
+      $("#show-place").show();
+    });
+
+    $("#new-name").val("");
+    $("#new-location").val("");
+    $("#new-landmarks").val("");
+    $("#new-time").val("");
+    $("#new-notes").val("");
   });
 });
